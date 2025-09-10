@@ -24,3 +24,13 @@ jobs:
         run: npm run start &
       - name: 'Run tests'
         run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0
+        with:
+          service-id: ${{ secrets.SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_TOKEN }}
+          wait-for-success: true
